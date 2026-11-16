@@ -1,0 +1,27 @@
+{
+  "name": "raddina-health-service-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Raddina Health Service (RHS) - Farmacare-Grade Pharmacy Operations & POS Engine",
+  "scripts": {
+    "dev": "pnpm --parallel -r dev",
+    "dev:backend": "pnpm --filter backend dev",
+    "dev:frontend": "pnpm --filter frontend dev",
+    "build": "pnpm --filter backend build && pnpm --filter frontend build",
+    "db:push": "pnpm --filter backend db:push",
+    "db:seed": "pnpm --filter backend db:seed",
+    "test:e2e": "pnpm --filter backend test:e2e",
+    "test:cov": "pnpm --filter backend test:cov",
+    "typecheck": "pnpm --filter backend exec tsc --noEmit && pnpm --filter frontend exec tsc --noEmit"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "argon2",
+      "esbuild"
+    ]
+  },
+  "engines": {
+    "node": ">=22.0.0",
+    "pnpm": ">=10.0.0"
+  }
+}

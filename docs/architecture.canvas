@@ -1,0 +1,314 @@
+{
+  "nodes": [
+    {
+      "id": "92ea4202104d4146",
+      "type": "group",
+      "x": -50,
+      "y": -50,
+      "width": 1400,
+      "height": 380,
+      "label": "1. Lapisan Klien & Presentasi (React 19, Tailwind v4, Three.js, Web Audio)",
+      "color": "4"
+    },
+    {
+      "id": "a61b672d83124111",
+      "type": "text",
+      "x": 0,
+      "y": 0,
+      "width": 300,
+      "height": 280,
+      "text": "### Stasiun Kasir POS (0ms)\n\n- Navigasi Papan Ketik Penuh (`F1`, `F2`, `F4`, `F8`)\n- Pencarian Cepat Obat & Zat Aktif\n- Pita Kesegaran Alokasi FEFO\n- Synthesizer Web Audio Native\n- Cetak Struk Termal 80mm\n\nLihat: [[sales-pos-fefo]]",
+      "color": "4"
+    },
+    {
+      "id": "eb1396d62b224c9b",
+      "type": "text",
+      "x": 340,
+      "y": 0,
+      "width": 300,
+      "height": 280,
+      "text": "### Portal Pengadaan & Apoteker\n\n- Analitik Omzet Pareto ABC (80/20)\n- Buku Defekta Otomatis (ROP)\n- Penerbitan SP-el 1-Klik\n- Validasi SIPA Real-time\n- Riwayat Surat Pesanan\n\nLihat: [[pareto-defekta-spel]]",
+      "color": "5"
+    },
+    {
+      "id": "72f2bc5528d14538",
+      "type": "text",
+      "x": 680,
+      "y": 0,
+      "width": 300,
+      "height": 280,
+      "text": "### Katalog & Inventaris Apotek\n\n- Hierarki Multi-UOM (Box, Strip, Tab)\n- Skema Harga Reguler & Mitra\n- Penerimaan Faktur Masuk PBF\n- Pemantauan Batch & ED\n- Kartu Stok Append-Only\n\nLihat: [[catalog-multi-uom]] & [[pbf-invoices-stockcards]]",
+      "color": "2"
+    },
+    {
+      "id": "a1de676f11e04a5d",
+      "type": "text",
+      "x": 1020,
+      "y": 0,
+      "width": 300,
+      "height": 280,
+      "text": "### Bio-Inteligensi 3D Asklepios\n\n- Mesin Grafis Three.js WebGL\n- Tongkat Asklepios Rotasi 360°\n- Inspektor Fisik Tablet, Kapsul, Sirup\n- Material Prosedural PBR Klinis\n- Manajemen Konteks GPU Cepat\n\nLihat: [[threejs-bio-intelligence]]",
+      "color": "6"
+    },
+    {
+      "id": "f68731a478b64914",
+      "type": "group",
+      "x": -50,
+      "y": 420,
+      "width": 1400,
+      "height": 340,
+      "label": "2. Lapisan Keamanan & Validasi Permintaan (NestJS Interceptor, Guards & Pipes)",
+      "color": "1"
+    },
+    {
+      "id": "cd833230f67b4a8d",
+      "type": "text",
+      "x": 0,
+      "y": 470,
+      "width": 300,
+      "height": 240,
+      "text": "### JwtAuthGuard & Sesi\n\n- Verifikasi Token Bearer HMAC-256\n- Rotasi Refresh Token Otomatis\n- Waktu Habis Access Token 15 Menit\n- Pencabutan Sesi Seketika (Revocation)\n- Payload Kriptografi Ringkas\n\nLihat: [[auth-rbac-sipa]]",
+      "color": "1"
+    },
+    {
+      "id": "939e603152d94186",
+      "type": "text",
+      "x": 340,
+      "y": 470,
+      "width": 300,
+      "height": 240,
+      "text": "### RolesGuard (RBAC)\n\n- Hierarki: `OWNER`, `PHARMACIST`, `CASHIER`\n- Pencegahan Eskalasi Akses Registrasi\n- Rute Khusus Pemilik & Apoteker\n- Pesan Penolakan Berstruktur (HTTP 403)\n\nLihat: [[auth-rbac-sipa]]",
+      "color": "1"
+    },
+    {
+      "id": "20d271cdbabd4175",
+      "type": "text",
+      "x": 680,
+      "y": 470,
+      "width": 300,
+      "height": 240,
+      "text": "### ActiveSipaGuard\n\n- Validasi Tanggal Kedaluwarsa SIPA\n- Verifikasi Keabsahan APJ Resmi\n- Pemblokiran Otomatis SP-el Kedaluwarsa\n- Kepatuhan Regulasi Permenkes\n\nLihat: [[auth-rbac-sipa]]",
+      "color": "1"
+    },
+    {
+      "id": "fc5f1bb6cf5a4df1",
+      "type": "text",
+      "x": 1020,
+      "y": 470,
+      "width": 300,
+      "height": 240,
+      "text": "### FileSignatureValidationPipe\n\n- Inspeksi Magic Bytes (JPEG, PNG, WEBP, PDF)\n- Penolakan Ekstensi Palsu (HTTP 400)\n- Batas Muatan Multer 5 MB (HTTP 413)\n- Pengarsipan Pindai Faktur & Foto Obat\n\nLihat: [[catalog-multi-uom]]",
+      "color": "1"
+    },
+    {
+      "id": "c09f67d0c23d442f",
+      "type": "group",
+      "x": -50,
+      "y": 850,
+      "width": 1400,
+      "height": 360,
+      "label": "3. Mesin Domain & Komputasi Matematis (NestJS Modules)",
+      "color": "3"
+    },
+    {
+      "id": "f026a92927c34bff",
+      "type": "text",
+      "x": 0,
+      "y": 900,
+      "width": 300,
+      "height": 260,
+      "text": "### Mesin Kasir & FEFO Engine\n\n- Alokasi Atomik Multi-Batch FEFO\n- Penguncian Baris `FOR UPDATE`\n- Validasi Kecukupan Stok Layak Jual\n- Rekomendasi Substitusi Zat Aktif (HTTP 422)\n- Pencatatan Mutasi `OUT_SALE`\n\nLihat: [[sales-pos-fefo]]",
+      "color": "3"
+    },
+    {
+      "id": "1bf3a12f391b4036",
+      "type": "text",
+      "x": 340,
+      "y": 900,
+      "width": 300,
+      "height": 260,
+      "text": "### Mesin Pareto & Defekta\n\n- Klasifikasi Pendapatan Kumulatif 80/20\n- Rumus Kecepatan Konsumsi 30 Hari\n- Titik Pemesanan Kembali: ROP = max(M, 7d)\n- Seleksi Pemasok PBF Termurah (90 Hari)\n- Notifikasi Near-ED Digest (< 90 Hari)\n\nLihat: [[pareto-defekta-spel]]",
+      "color": "3"
+    },
+    {
+      "id": "017dd4072f98486b",
+      "type": "text",
+      "x": 680,
+      "y": 900,
+      "width": 300,
+      "height": 260,
+      "text": "### Mesin Pengadaan & Faktur\n\n- Kalkulasi Konversi Satuan Dasar ($Q_{base}$)\n- Penghitungan HPP Presisi ($P_u / M(u)$)\n- Pendaftaran Batch Baru / Penambahan Stok\n- Pencatatan Mutasi `IN_INVOICE`\n- Transaksionalitas ACID Penuh\n\nLihat: [[pbf-invoices-stockcards]]",
+      "color": "3"
+    },
+    {
+      "id": "1e3a9c2433e54f17",
+      "type": "text",
+      "x": 1020,
+      "y": 900,
+      "width": 300,
+      "height": 260,
+      "text": "### Layanan Email SP-el\n\n- Kompilasi Template HTML Dokumen Resmi\n- Pembekuan Snapshot SIPA & Nama APJ\n- Pengiriman SMTP Aman via Nodemailer\n- Penanganan Status Kirim (`SENT_EMAIL`)\n- Integrasi Server Pengujian Mailpit\n\nLihat: [[pareto-defekta-spel]]",
+      "color": "3"
+    },
+    {
+      "id": "5921c2bd5e714504",
+      "type": "group",
+      "x": -50,
+      "y": 1300,
+      "width": 1400,
+      "height": 360,
+      "label": "4. Lapisan Persistensi Data & Infrastruktur (PostgreSQL 17, Drizzle, Mailpit)",
+      "color": "5"
+    },
+    {
+      "id": "70c9739884ac477f",
+      "type": "text",
+      "x": 0,
+      "y": 1350,
+      "width": 300,
+      "height": 260,
+      "text": "### Basis Data PostgreSQL 17\n\n- Mesin Basis Data Relasional ACID\n- Isolasi Transaksi Berkelanjutan\n- Penguncian Baris Multi-Kasir\n- Indeks Kueri Performa Tinggi\n- Ekstensi UUID Gen Acak\n\nLihat: [[docs/ERD.mmd|ERD]]",
+      "color": "5"
+    },
+    {
+      "id": "4b884bcf02af4d1b",
+      "type": "text",
+      "x": 340,
+      "y": 1350,
+      "width": 300,
+      "height": 260,
+      "text": "### Drizzle ORM Schema\n\n- Definisi 12 Tabel Bertipe Kuat\n- Enkapsulasi TypeScript Statis\n- Relasi Foreign Key Terindeks\n- Nol Overhead Abstraksi Runtime\n- Skrip Seeder Idempoten\n\nLihat: `backend/src/db/schema.ts`",
+      "color": "5"
+    },
+    {
+      "id": "bc0f952a28aa4533",
+      "type": "text",
+      "x": 680,
+      "y": 1350,
+      "width": 300,
+      "height": 260,
+      "text": "### Kartu Stok Append-Only\n\n- Log Mutasi Permanen Tidak Terhapus\n- Kepatuhan Standar GDP & BPOM\n- Keterlacakan Identitas Staf Transaksi\n- Saldo Pasca Mutasi Terekam Presisi\n\nLihat: [[pbf-invoices-stockcards]]",
+      "color": "5"
+    },
+    {
+      "id": "df0df7cbda134b26",
+      "type": "text",
+      "x": 1020,
+      "y": 1350,
+      "width": 300,
+      "height": 260,
+      "text": "### Mailpit SMTP Server\n\n- Port SMTP `:1025`\n- Antarmuka Web Peninjau `:8025`\n- Uji Pengiriman Email Bebas Resiko Nyata\n- Penangkapan Rangkaian Uji E2E Otomatis\n\nLihat: `docker-compose.yml`",
+      "color": "5"
+    }
+  ],
+  "edges": [
+    {
+      "id": "fbcd2b68658f47f3",
+      "fromNode": "a61b672d83124111",
+      "fromSide": "bottom",
+      "toNode": "cd833230f67b4a8d",
+      "toSide": "top",
+      "toEnd": "arrow",
+      "label": "Token Bearer"
+    },
+    {
+      "id": "2fcac8cbfbac48f3",
+      "fromNode": "eb1396d62b224c9b",
+      "fromSide": "bottom",
+      "toNode": "20d271cdbabd4175",
+      "toSide": "top",
+      "toEnd": "arrow",
+      "label": "Verifikasi SIPA"
+    },
+    {
+      "id": "2a7e50e5e0fe46cf",
+      "fromNode": "72f2bc5528d14538",
+      "fromSide": "bottom",
+      "toNode": "fc5f1bb6cf5a4df1",
+      "toSide": "top",
+      "toEnd": "arrow",
+      "label": "Unggah Berkas Fisik"
+    },
+    {
+      "id": "364cf8690dce4297",
+      "fromNode": "cd833230f67b4a8d",
+      "fromSide": "bottom",
+      "toNode": "f026a92927c34bff",
+      "toSide": "top",
+      "toEnd": "arrow",
+      "label": "Checkout POS"
+    },
+    {
+      "id": "2988d6b69edf48ec",
+      "fromNode": "20d271cdbabd4175",
+      "fromSide": "bottom",
+      "toNode": "1bf3a12f391b4036",
+      "toSide": "top",
+      "toEnd": "arrow",
+      "label": "Hitung Defekta"
+    },
+    {
+      "id": "06c9eb8ec7f84ec7",
+      "fromNode": "20d271cdbabd4175",
+      "fromSide": "bottom",
+      "toNode": "1e3a9c2433e54f17",
+      "toSide": "top",
+      "toEnd": "arrow",
+      "label": "Terbitkan SP-el"
+    },
+    {
+      "id": "3a57303a78f546d5",
+      "fromNode": "fc5f1bb6cf5a4df1",
+      "fromSide": "bottom",
+      "toNode": "017dd4072f98486b",
+      "toSide": "top",
+      "toEnd": "arrow",
+      "label": "Faktur Masuk"
+    },
+    {
+      "id": "2b7477e605664e40",
+      "fromNode": "f026a92927c34bff",
+      "fromSide": "bottom",
+      "toNode": "70c9739884ac477f",
+      "toSide": "top",
+      "toEnd": "arrow",
+      "label": "FOR UPDATE"
+    },
+    {
+      "id": "825d6178c8fb481b",
+      "fromNode": "f026a92927c34bff",
+      "fromSide": "bottom",
+      "toNode": "bc0f952a28aa4533",
+      "toSide": "top",
+      "toEnd": "arrow",
+      "label": "OUT_SALE"
+    },
+    {
+      "id": "9df68478eebd4ff0",
+      "fromNode": "017dd4072f98486b",
+      "fromSide": "bottom",
+      "toNode": "bc0f952a28aa4533",
+      "toSide": "top",
+      "toEnd": "arrow",
+      "label": "IN_INVOICE"
+    },
+    {
+      "id": "673c08c0e2b4425a",
+      "fromNode": "1bf3a12f391b4036",
+      "fromSide": "bottom",
+      "toNode": "4b884bcf02af4d1b",
+      "toSide": "top",
+      "toEnd": "arrow",
+      "label": "Update ParetoClass"
+    },
+    {
+      "id": "fdeafe93ce504f6a",
+      "fromNode": "1e3a9c2433e54f17",
+      "fromSide": "bottom",
+      "toNode": "df0df7cbda134b26",
+      "toSide": "top",
+      "toEnd": "arrow",
+      "label": "Kirim SMTP"
+    }
+  ]
+}

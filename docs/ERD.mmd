@@ -1,0 +1,206 @@
+erDiagram
+    users ||--o{ refresh_tokens : "memiliki sesi"
+    users ||--o{ pbf_invoices : "menerima faktur"
+    users ||--o{ stock_cards : "mencatat mutasi"
+    users ||--o{ sales_transactions : "melayani transaksi"
+    users ||--o{ purchase_orders : "menerbitkan SP-el"
+
+    categories ||--o{ medicines : "mengelompokkan"
+
+    medicines ||--o{ medicine_uom_conversions : "memiliki konversi satuan"
+    medicines ||--o{ medicine_batches : "memiliki stok batch"
+    medicines ||--o{ pbf_invoice_items : "tercatat pada item faktur"
+    medicines ||--o{ stock_cards : "tercatat pada kartu stok"
+    medicines ||--o{ sale_items : "terjual pada pos"
+    medicines ||--o{ purchase_order_items : "dipesan pada SP-el"
+
+    suppliers ||--o{ medicine_batches : "memasok batch"
+    suppliers ||--o{ pbf_invoices : "menerbitkan faktur"
+    suppliers ||--o{ purchase_orders : "menerima SP-el"
+
+    pbf_invoices ||--o{ pbf_invoice_items : "memuat rincian"
+    medicine_batches ||--o{ pbf_invoice_items : "dibentuk oleh"
+    medicine_batches ||--o{ stock_cards : "mengalami mutasi"
+    medicine_batches ||--o{ sale_item_batch_allocations : "dialokasikan secara FEFO"
+
+    sales_transactions ||--o{ sale_items : "memuat item"
+    sale_items ||--o{ sale_item_batch_allocations : "dipecah lintas batch"
+
+    purchase_orders ||--o{ purchase_order_items : "memuat pesanan"
+
+    users {
+        uuid id PK
+        varchar_255 email UK "NOT NULL"
+        text password_hash "NOT NULL"
+        varchar_255 full_name "NOT NULL"
+        user_role role "OWNER | PHARMACIST | CASHIER"
+        varchar_100 no_sipa "NULLABLE"
+        date sipa_expiry_date "NULLABLE"
+        boolean is_active "DEFAULT true"
+        timestamptz created_at "NOT NULL"
+        timestamptz updated_at "NOT NULL"
+    }
+
+    refresh_tokens {
+        uuid id PK
+        uuid user_id FK "ON DELETE CASCADE"
+        varchar_255 token_hash UK "NOT NULL"
+        timestamptz expires_at "NOT NULL"
+        timestamptz revoked_at "NULLABLE"
+        timestamptz created_at "NOT NULL"
+    }
+
+    categories {
+        uuid id PK
+        varchar_120 name UK "NOT NULL"
+        text description "NULLABLE"
+        timestamptz created_at "NOT NULL"
+    }
+
+    medicines {
+        uuid id PK
+        varchar_64 sku UK "NOT NULL"
+        varchar_255 name "NOT NULL, INDEXED"
+        uuid category_id FK "ON DELETE RESTRICT"
+        varchar_255 active_ingredient "NOT NULL, INDEXED"
+        varchar_32 base_unit "NOT NULL"
+        drug_class classification "BEBAS..NARKOTIKA"
+        pareto_class pareto_class "A | B | C"
+        integer min_stock_base_unit "CHECK >= 0"
+        text image_path "NULLABLE"
+        boolean is_active "DEFAULT true"
+        timestamptz created_at "NOT NULL"
+        timestamptz updated_at "NOT NULL"
+    }
+
+    medicine_uom_conversions {
+        uuid id PK
+        uuid medicine_id FK "ON DELETE CASCADE"
+        varchar_32 unit_name "UK(medicine_id, unit_name)"
+        integer multiplier_to_base "CHECK >= 1"
+        integer selling_price_regular "CHECK >= 0"
+        integer selling_price_partner "CHECK >= 0"
+        varchar_64 barcode "NULLABLE"
+    }
+
+    suppliers {
+        uuid id PK
+        varchar_32 code UK "NOT NULL"
+        varchar_255 name "NOT NULL"
+        varchar_255 email "NOT NULL"
+        varchar_50 phone "NOT NULL"
+        varchar_100 izin_pbf_no "NOT NULL"
+        text address "NOT NULL"
+        boolean is_active "DEFAULT true"
+        timestamptz created_at "NOT NULL"
+    }
+
+    medicine_batches {
+        uuid id PK
+        uuid medicine_id FK "ON DELETE RESTRICT"
+        uuid supplier_id FK "ON DELETE RESTRICT"
+        varchar_100 batch_number "UK(medicine_id, batch_number, supplier_id)"
+        date expiry_date "INDEX(medicine_id, expiry_date, created_at)"
+        integer initial_stock "CHECK >= 0"
+        integer current_stock "CHECK >= 0"
+        numeric_14_4 cost_price_per_base_unit "NOT NULL"
+        timestamptz created_at "NOT NULL"
+    }
+
+    pbf_invoices {
+        uuid id PK
+        varchar_100 invoice_number UK "NOT NULL"
+        uuid supplier_id FK "ON DELETE RESTRICT"
+        uuid received_by_user_id FK "ON DELETE RESTRICT"
+        date invoice_date "NOT NULL"
+        date due_date "NOT NULL"
+        bigint total_amount "NOT NULL"
+        text scan_file_path "NULLABLE"
+        payment_status payment_status "UNPAID | PAID"
+        text notes "NULLABLE"
+        timestamptz created_at "NOT NULL"
+    }
+
+    pbf_invoice_items {
+        uuid id PK
+        uuid invoice_id FK "ON DELETE CASCADE"
+        uuid medicine_id FK "ON DELETE RESTRICT"
+        uuid batch_id FK "ON DELETE RESTRICT"
+        varchar_100 batch_number "NOT NULL"
+        date expiry_date "NOT NULL"
+        varchar_32 uom_unit_name "NOT NULL"
+        integer qty_in_uom "NOT NULL"
+        integer multiplier_to_base "NOT NULL"
+        integer received_base_qty "NOT NULL"
+        integer purchase_price_per_uom "NOT NULL"
+        numeric_14_4 cost_price_per_base_unit "NOT NULL"
+        bigint line_total "NOT NULL"
+    }
+
+    stock_cards {
+        uuid id PK
+        uuid medicine_id FK "ON DELETE RESTRICT"
+        uuid batch_id FK "ON DELETE RESTRICT"
+        uuid actor_user_id FK "ON DELETE RESTRICT"
+        stock_movement_type movement_type "IN_INVOICE | OUT_SALE | ADJUSTMENT"
+        varchar_100 reference_id "NOT NULL"
+        integer qty_change "NOT NULL"
+        integer balance_after "CHECK >= 0"
+        text notes "NULLABLE"
+        timestamptz created_at "INDEX(medicine_id, created_at)"
+    }
+
+    sales_transactions {
+        uuid id PK
+        varchar_64 receipt_number UK "NOT NULL"
+        uuid cashier_id FK "ON DELETE RESTRICT"
+        pricing_tier pricing_tier "REGULAR | PARTNER"
+        varchar_255 customer_name "NULLABLE"
+        payment_method payment_method "CASH | QRIS | DEBIT"
+        bigint total_amount "NOT NULL"
+        bigint amount_paid "NOT NULL"
+        bigint change_amount "NOT NULL"
+        timestamptz created_at "NOT NULL"
+    }
+
+    sale_items {
+        uuid id PK
+        uuid sale_id FK "ON DELETE CASCADE"
+        uuid medicine_id FK "ON DELETE RESTRICT"
+        varchar_32 uom_unit_name "NOT NULL"
+        integer qty_in_uom "NOT NULL"
+        integer multiplier_to_base "NOT NULL"
+        integer total_base_qty "NOT NULL"
+        integer unit_selling_price "NOT NULL"
+        bigint subtotal "NOT NULL"
+    }
+
+    sale_item_batch_allocations {
+        uuid id PK
+        uuid sale_item_id FK "ON DELETE CASCADE"
+        uuid batch_id FK "ON DELETE RESTRICT"
+        varchar_100 batch_number_snapshot "NOT NULL"
+        date expiry_date_snapshot "NOT NULL"
+        integer allocated_base_qty "CHECK > 0"
+        numeric_14_4 unit_cost_price_snapshot "NOT NULL"
+    }
+
+    purchase_orders {
+        uuid id PK
+        varchar_64 sp_number UK "NOT NULL"
+        uuid supplier_id FK "ON DELETE RESTRICT"
+        uuid pharmacist_id FK "ON DELETE RESTRICT"
+        varchar_100 pharmacist_sipa_snapshot "NOT NULL"
+        po_status status "ISSUED | SENT_EMAIL | RECEIVED"
+        timestamptz email_sent_at "NULLABLE"
+        text notes "NULLABLE"
+        timestamptz created_at "NOT NULL"
+    }
+
+    purchase_order_items {
+        uuid id PK
+        uuid purchase_order_id FK "ON DELETE CASCADE"
+        uuid medicine_id FK "ON DELETE RESTRICT"
+        integer ordered_base_qty "CHECK > 0"
+        numeric_14_4 estimated_unit_cost "NULLABLE"
+    }

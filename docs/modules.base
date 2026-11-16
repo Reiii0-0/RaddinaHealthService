@@ -1,0 +1,53 @@
+filters:
+  and:
+    - file.hasTag("module")
+    - 'file.ext == "md"'
+
+formulas:
+  status_label: 'if(status == "production", "Production", "In Development")'
+
+properties:
+  file.name:
+    displayName: "Module File"
+  title:
+    displayName: "Module Title"
+  status:
+    displayName: "Status"
+  owner:
+    displayName: "Engineering Lead"
+  layer:
+    displayName: "Architecture Layer"
+  coverage:
+    displayName: "Test Coverage"
+  e2e_scenarios:
+    displayName: "E2E Scenarios"
+
+views:
+  - type: table
+    name: "System Modules Table"
+    order:
+      - file.name
+      - title
+      - status
+      - owner
+      - layer
+      - coverage
+      - e2e_scenarios
+    summaries:
+      file.name: Unique
+
+  - type: cards
+    name: "Module Cards"
+    order:
+      - file.name
+      - title
+      - owner
+      - layer
+      - status
+
+  - type: list
+    name: "Quick Summary"
+    order:
+      - file.name
+      - title
+      - status

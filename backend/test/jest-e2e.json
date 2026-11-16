@@ -1,0 +1,22 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": "..",
+  "testEnvironment": "node",
+  "testRegex": ".e2e-spec.ts$",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "moduleNameMapper": {
+    "^@shared/(.*)$": "<rootDir>/../shared/$1"
+  },
+  "collectCoverageFrom": [
+    "src/**/*.ts",
+    "!src/main.ts",
+    "!src/db/seed.ts",
+    "!src/db/migrate.ts",
+    "!src/**/*.module.ts",
+    "!src/**/*.dto.ts"
+  ],
+  "coverageDirectory": "./coverage-e2e",
+  "testTimeout": 30000
+}

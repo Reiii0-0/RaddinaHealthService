@@ -1,0 +1,44 @@
+# Dependencies
+node_modules
+.pnpm-store
+
+# Environment variables
+.env
+*.local
+
+# Build artifacts
+dist
+backend/dist
+frontend/dist
+*.tsbuildinfo
+
+# Coverage and test artifacts
+coverage
+coverage-e2e
+*.log
+
+# Uploads
+uploads/
+backend/uploads/
+
+# IDE and OS
+.DS_Store
+.vscode
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Local notes and planning
+AGENTS.md
+IMPLEMENTATION_PLAN.md
+IMPLEMENTATION_DESIGN.md
+docs/SKILLS_RESEARCH.md
+docs/RADDINA_MASTER_DOCUMENT.md
+graphify-out/
+scratch/
+scratch*.png
+.gemini/
+.agents/
