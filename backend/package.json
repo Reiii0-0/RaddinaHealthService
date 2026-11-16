@@ -1,6 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
+  "license": "AGPL-3.0-only",
   "description": "Raddina Health Service Backend (NestJS + Express + Drizzle PostgreSQL 17)",
   "private": true,
   "scripts": {
